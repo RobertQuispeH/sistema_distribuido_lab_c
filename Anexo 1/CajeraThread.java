@@ -1,18 +1,21 @@
 public class CajeraThread extends Thread{
 	
+	// Atributos que almacenan el nombre de la cajera, el cliente y el tiempo inicial
 	private String nombre;
 	private Cliente cliente;
 	private long initialTime;
-	
+	//constructor por default
 	public CajeraThread() {
 	}
 	
+	//Constructor que inicializa los atributos
 	public CajeraThread(String nombre, Cliente cliente, long initialTime) {
 		this.nombre = nombre;
 		this.cliente = cliente;
 		this.initialTime = initialTime;
 	}
-	
+
+	//Get's y Set's de los atributos
 	public String getNombre() {
 		return nombre;
 	}
@@ -37,6 +40,7 @@ public class CajeraThread extends Thread{
 		this.cliente = cliente;
 	}
 	
+	//Metodo run para inicilizar los hilos
 	@Override
 	public void run() {
 		
@@ -45,6 +49,7 @@ public class CajeraThread extends Thread{
 		+ (System.currentTimeMillis() - this.initialTime) / 1000
 		+ "seg");
 
+		 // Itera sobre los productos que estan en el carrito
 		for (int i = 0; i < this.cliente.getCarroCompra().length; i++) {
 			// Se procesa el pedido en X segundos
 			this.esperarXsegundos(cliente.getCarroCompra()[i]);
@@ -62,6 +67,7 @@ public class CajeraThread extends Thread{
 
 	}
 	
+	//Mismo metodo que cajera, establecer un tiempo de espera.
 	private void esperarXsegundos(int segundos) {
 		try {
 			Thread.sleep(segundos * 1000);
