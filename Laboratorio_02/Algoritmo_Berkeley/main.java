@@ -1,21 +1,25 @@
 public class main {
 	public static void main(String[] args) {
+		// Creamos varias computadoras con diferentes tiempos
+        Maquina comp1 = new Maquina("Comp1", 10);
+        Maquina comp2 = new Maquina("Comp2", 20);
+        Maquina comp3 = new Maquina("Comp3", 30);
+        Maquina comp4 = new Maquina("Comp4", 40);
 
-		//Creamos dos computadoras,condiferente tiempo
-		Maquina comp1 = new Maquina("Comp1", 10);
-       	 	Maquina comp2 = new Maquina("Comp2", 20);
+        // Creamos el servidor de tiempo
+        Servidor servidorTiempo = new Servidor();
 
-		//Llamamos al servidor
-		 Servidor servidorTiempo = new Servidor();
-		//Incluimos al servidor las computadoras creadas
-		 servidorTiempo.agregarComputadora(comp1);
-       		 servidorTiempo.agregarComputadora(comp2);
+        // Agregamos las computadoras al servidor
+        servidorTiempo.agregarComputadora(comp1);
+        servidorTiempo.agregarComputadora(comp2);
+        servidorTiempo.agregarComputadora(comp3);
+        servidorTiempo.agregarComputadora(comp4);
 
-		 // Llamamos al metodo sincronizar para ejecutar Berkeley
-	        servidorTiempo.sincronizarTiempo();
-	
-	        // Imprimimos el tiempo sincronizado.
-	        servidorTiempo.imprimirTiempos();
+        // Sincronizamos el tiempo de las computadoras usando el algoritmo de Berkeley
+        servidorTiempo.sincronizarTiempo();
+
+        // Imprimimos el tiempo sincronizado de cada computadora
+        servidorTiempo.imprimirTiempos();
     
 	}
 }
