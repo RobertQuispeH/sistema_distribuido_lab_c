@@ -4,56 +4,57 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 // El servidor se ejecuta por consola
 public class Server {
-  // a unique ID for each connection
+  // Un unico ID para la conexion
 	private static int uniqueId;
-	// an ArrayList to keep the list of the Client
+	//ArrayList para listar clientes
 	private ArrayList<ClientThread> al;
-	// to display time
+	//Para mostrar el tiempo actual
 	private SimpleDateFormat sdf;
-	// the port number to listen for connection
+	// Nuemro de puerto
 	private int port;
-	// to check if server is running
+	// Verificar union con els ervidor
 	private boolean keepGoing;
-	// notification
+	// para notificar
 	private String notif = " *** ";
-	//constructor that receive the port to listen to for connection as parameter
+	//constructor que recibe el puerto para escuchar conexiones como parámetro
 	public Server(int port) {
-		// the port
+		// puerto
 		this.port = port;
-		// to display hh:mm:ss
+		// formato del tiempo
 		sdf = new SimpleDateFormat("HH:mm:ss");
-		// an ArrayList to keep the list of the Client
+		// un ArrayList para mantener la lista de clientes
 		al = new ArrayList<ClientThread>();
 	}
+	//Iniciamos el servidor
 	public void start() {
 		keepGoing = true;
-		//create socket server and wait for connection requests
+		crear socket servidor y esperar solicitudes de conexión
 		try
 		{
-			// the socket used by the server
+			//Socket usado por el servidor
 			ServerSocket serverSocket = new ServerSocket(port);
-			// infinite loop to wait for connections ( till server is active )
+			//bucle infinito para esperar conexiones (hasta que el servidor esté activo)
 			while(keepGoing)
 			{
 				display("Server waiting for Clients on port " + port + ".");
-				// accept connection if requested from client
+				// Aceptar la conexion en caso sea correcto
 				Socket socket = serverSocket.accept();
-				// break if server stoped
+				// De lo contrario salir del server
 				if(!keepGoing)
 				break;
-				// if client is connected, create its thread
+				//si el cliente está conectado, crear su hilo
 				ClientThread t = new ClientThread(socket);
-				//add this client to arraylist
+				//Añadirlo a la lista
 				al.add(t);
 				t.start();
 			}
-			// try to stop the server
+			//Intenta detener el server
 			try {
 				serverSocket.close();
 				for(int i = 0; i < al.size(); ++i) {
 					ClientThread tc = al.get(i);
 					try {
-						// close all data streams and socket
+						// cerrar todos los flujos de datos y el socket
 						tc.sInput.close();
 						tc.sOutput.close();
 						tc.socket.close();
@@ -73,7 +74,7 @@ public class Server {
 			display(msg);
 		}
 	}
-	// to stop the server
+	// detenemos el servidor
 	protected void stop() {
 		keepGoing = false;
 		try {
@@ -82,64 +83,64 @@ public class Server {
 		catch(Exception e) {
 		}
 	}
-	// Display an event to the console
+	//Mostrar un evento en la consola
 	private void display(String msg) {
 		String time = sdf.format(new Date()) + " " + msg;
 		System.out.println(time);
 	}
 	
-	// to broadcast a message to all Clients
+	// para transmitir un mensaje a todos los clientes
 	private synchronized boolean broadcast(String message) {
-		// add timestamp to the message
+		// añadir marca de tiempo al mensaje
 		String time = sdf.format(new Date());
-		// to check if message is private i.e. client to client message
+		//para comprobar si el mensaje es privado, es decir, mensaje de cliente a cliente
 		String[] w = message.split(" ",3);
 		boolean isPrivate = false;
 		if(w[1].charAt(0)=='@')
 			isPrivate=true;
-		// if private message, send message to mentioned username only
+		// si es un mensaje privado, enviar el mensaje solo al nombre de usuario mencionado
 		if(isPrivate==true)
 		{
 			String tocheck=w[1].substring(1, w[1].length());
 			message=w[0]+w[2];
 			String messageLf = time + " " + message + "\n";
 			boolean found=false;
-			// we loop in reverse order to find the mentioned username
+			// bucle en orden inverso para encontrar el nombre de usuario mencionado
 			for(int y=al.size(); --y>=0;)
 			{
 				ClientThread ct1=al.get(y);
 				String check=ct1.getUsername();
 				if(check.equals(tocheck))
 				{
-					// try to write to the Client if it fails remove it from the list
+					//intentar escribir en el cliente, si falla, eliminarlo de la lista
 					if(!ct1.writeMsg(messageLf)) {
 						al.remove(y);
 						display("Disconnected Client " + ct1.username + " removed from list.");
 					
 					}
-					// username found and delivered the message
+					//nombre de usuario encontrado y entregado el mensaje
 					found=true;
 					break;
 				}
 			
 			}
-			// mentioned user not found, return false
+			//nombre de usuario mencionado no encontrado, devolver false
 			if(found!=true)
 			{
 				return false;
 			}
 		}
-		// if message is a broadcast message
+		//si el mensaje es un mensaje de difusión
 		else
 		{
 			String messageLf = time + " " + message + "\n";
-			// display message
+			//mostrar mensaje
 			System.out.print(messageLf);
-			// we loop in reverse order in case we would have to remove a Client
-			// because it has disconnected
+			//bucle en orden inverso en caso de que tengamos que eliminar un Cliente
+          		//porque se ha desconectado
 			for(int i = al.size(); --i >= 0;) {
 				ClientThread ct = al.get(i);
-				// try to write to the Client if it fails remove it from the list
+				//intentar escribir en el cliente, si falla, eliminarlo de la lista
 				if(!ct.writeMsg(messageLf)) {
 					al.remove(i);
 					display("Disconnected Client " + ct.username + " removed from list.");
