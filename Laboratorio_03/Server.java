@@ -188,4 +188,91 @@ public class Server {
 		server.start();
 	}
 
+	// One instance of this thread will run for each client
+	class ClientThread extends Thread {
+		// the socket to get messages from client
+		Socket socket;
+		ObjectInputStream sInput;
+		ObjectOutputStream sOutput;
+		// my unique id (easier for deconnection)
+		int id;
+		// the Username of the Client
+		String username;
+		// message object to recieve message and its type
+		ChatMessage cm;
+		// timestamp
+		String date;
+
+		// Constructor
+		ClientThread(Socket socket) {
+			// a unique id
+			id = ++uniqueId;
+			this.socket = socket;
+			// Creating both Data Stream
+			System.out.println("Thread trying to create Object Input/Output Streams");
+			try {
+				sOutput = new ObjectOutputStream(socket.getOutputStream());
+				sInput = new ObjectInputStream(socket.getInputStream());
+				// read the username
+				username = (String) sInput.readObject();
+				broadcast(notif + username + " has joined the chat room." + notif);
+			} catch (IOException e) {
+				display("Exception creating new Input/output Streams: " + e);
+				return;
+			} catch (ClassNotFoundException e) {
+			}
+			date = new Date().toString() + "\n";
+		}
+
+		public String getUsername() {
+			return username;
+		}
+
+		public void setUsername(String username) {
+			this.username = username;
+		}
+	
+		public void run() {
+			// to loop until LOGOUT
+			boolean keepGoing = true;
+			while (keepGoing) {
+				// read a String (which is an object)
+				try {
+					cm = (ChatMessage) sInput.readObject();
+				} catch (IOException e) {
+					display(username + " Exception reading Streams: " + e);
+					break;
+				} catch (ClassNotFoundException e2) {
+					break;
+				}
+				// get the message from the ChatMessage object received
+				String message = cm.getMessage();
+				// different actions based on type message
+				switch (cm.getType()) {
+				case ChatMessage.MESSAGE:
+					boolean confirmation = broadcast(username + ": " + message);
+					if (confirmation == false) {
+						String msg = notif + "Sorry. No such user exists." + notif;
+						writeMsg(msg);
+					}
+					break;
+				case ChatMessage.LOGOUT:
+					display(username + " disconnected with a LOGOUT message.");
+					keepGoing = false;
+					break;
+				case ChatMessage.WHOISIN:
+					writeMsg("List of the users connected at " + sdf.format(new Date()) + "\n");
+					// send list of active clients
+					for (int i = 0; i < al.size(); ++i) {
+						ClientThread ct = al.get(i);
+						writeMsg((i + 1) + ") " + ct.username + " since " + ct.date);
+					}
+					break;
+				}
+			}
+			// if out of the loop then disconnected and remove from client list
+			remove(id);
+			close();
+		}
+		
 }
