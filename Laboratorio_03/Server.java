@@ -149,5 +149,19 @@ public class Server {
 		}
 		return true;
 	}
-  "......"
+  // if client sent LOGOUT message to exit
+	synchronized void remove(int id) {
+		String disconnectedClient = "";
+		// scan the array list until we found the Id
+		for (int i = 0; i < al.size(); ++i) {
+			ClientThread ct = al.get(i);
+			// if found remove it
+			if (ct.id == id) {
+				disconnectedClient = ct.getUsername();
+				al.remove(i);
+				break;
+			}
+		}
+		broadcast(notif + disconnectedClient + " has left the chat room." + notif);
+	}
 }
