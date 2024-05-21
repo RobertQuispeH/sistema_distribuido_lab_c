@@ -14,4 +14,11 @@ public class Stock extends UnicastRemoteObject implements StockInterface {
     public Stock() throws RemoteException {
         super();
     }
+    // Metodo para añadir las medicinas creadas
+    @Override
+    public void addMedicine(String name, float price, int stock) throws RemoteException {
+        medicines.put(name, new Medicine(name, price, stock)); // añadelo al HasMap
+    }
+
+    
 }
