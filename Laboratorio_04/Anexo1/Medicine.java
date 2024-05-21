@@ -38,6 +38,17 @@ public class Medicine extends UnicastRemoteObject implements MedicineInterface {
 		Medicine aux = new Medicine(name, unitPrice * amount, stock);
 		return aux;
 	}
+	 // Obtener el estado actual del stock de la medicina
+	@Override
+	public int getStock() throws RemoteException {
+		return this.stock;
+	}
+	
+	// Imprimir la informacion de la medicina
+	@Override
+	public String print() throws RemoteException {
+		return this.name + "\nPrice: " + this.unitPrice + "\nStock: " + this.stock;
+	}
 	
   
 }
