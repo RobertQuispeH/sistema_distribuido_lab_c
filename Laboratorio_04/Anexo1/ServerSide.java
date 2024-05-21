@@ -10,5 +10,8 @@ public class ServerSide {
         // Añadimos elementos a nuestor inventario
         pharmacy.addMedicine("Paracetamol", 3.2f, 10);
         pharmacy.addMedicine("Mejoral", 2.0f, 20);
+        pharmacy.addMedicine("Amoxilina", 1.0f, 30);
+        pharmacy.addMedicine("Aspirina", 5.0f, 40);
+        
     }
 }
