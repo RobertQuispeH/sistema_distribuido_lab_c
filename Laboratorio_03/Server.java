@@ -28,7 +28,7 @@ public class Server {
 	//Iniciamos el servidor
 	public void start() {
 		keepGoing = true;
-		crear socket servidor y esperar solicitudes de conexión
+		//crear socket servidor y esperar solicitudes de conexión
 		try
 		{
 			//Socket usado por el servidor

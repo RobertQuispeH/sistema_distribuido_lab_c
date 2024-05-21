@@ -154,7 +154,7 @@ public class Client {
             // si el número de argumentos es inválido
             default:
                 System.out.println("El uso es: > java Client [username] [portNumber] [serverAddress]");
-                return;
+            return;
         }
         // crea el objeto Cliente
         Client client = new Client(serverAddress, portNumber, userName);
