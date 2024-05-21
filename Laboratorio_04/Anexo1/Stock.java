@@ -29,6 +29,9 @@ public class Stock extends UnicastRemoteObject implements StockInterface {
         }
         return medicine.getMedicine(amount); //Pero si esta registrada la medicina, es posible comprarla
     }
-    
-    
+    //Onteenr el stock de las medicinas
+    @Override
+    public HashMap<String, MedicineInterface> getStockProducts() throws RemoteException {
+        return this.medicines; //Siumplemente que devuelva la informacion del HashMap
+    } 
 }
