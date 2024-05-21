@@ -21,7 +21,15 @@ public class ClienteSide {
                 System.out.println(medicine.print()); // Una vez recorrido todo, imprime la informacion
                 System.out.println("*--------------*");
             }
-        } 
+        } else if (selection == 2) {
+            // Pero si es la opcion 2, es para comprar el producto
+            System.out.println("Ingrese nombre de la medicina:");
+            String medicineName = sc.next(); // Ingresa y lee por consola el nombre e la medicina a comprar
+            System.out.println("Ingrese cantidad a comprar:");
+            int amount = sc.nextInt(); // Luego ponemos la cantida que queremoscomprar
+            MedicineInterface medicine = pharmacy.buyMedicine(medicineName, amount); // Se realiza la compra 
+            System.out.println("Usted acaba de comprar:");
+            System.out.println(medicine.print()); // Imprimimos un resumen de lo que adquirimos
         } else {
             System.out.println("Seleccione una opción válida"); // Mensaje en caso de opción inválida
         }
