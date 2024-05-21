@@ -19,6 +19,16 @@ public class Stock extends UnicastRemoteObject implements StockInterface {
     public void addMedicine(String name, float price, int stock) throws RemoteException {
         medicines.put(name, new Medicine(name, price, stock)); // añadelo al HasMap
     }
-
+    
+    //Metodo que es para solicitar medicina y comprarla
+    @Override
+    public MedicineInterface buyMedicine(String name, int amount) throws RemoteException, StockException {
+        MedicineInterface medicine = medicines.get(name); //Indicamos que se debe buscar por su nombre
+        if (medicine == null) {
+            throw new StockException("Unable to find " + name); // Si no hay nada entonces lanza la exepcion
+        }
+        return medicine.getMedicine(amount); //Pero si esta registrada la medicina, es posible comprarla
+    }
+    
     
 }
