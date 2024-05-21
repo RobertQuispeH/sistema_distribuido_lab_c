@@ -12,6 +12,8 @@ public class ServerSide {
         pharmacy.addMedicine("Mejoral", 2.0f, 20);
         pharmacy.addMedicine("Amoxilina", 1.0f, 30);
         pharmacy.addMedicine("Aspirina", 5.0f, 40);
-        
+        // Registra el objeto Stock en el registro RMI con el nombre "PHARMACY"
+        Naming.rebind("PHARMACY", pharmacy);
+        System.out.println("Server ready"); // Imprime un mensaje indicando que el servidor está listo
     }
 }
