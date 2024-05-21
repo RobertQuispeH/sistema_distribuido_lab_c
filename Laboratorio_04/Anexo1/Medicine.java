@@ -33,9 +33,11 @@ public class Medicine extends UnicastRemoteObject implements MedicineInterface {
 			throw new StockException("Stock empty"); // excepcion si esta vacio
 		if (this.stock - amount < 0)
 			throw new StockException("Stock not amount of medicine");//excepcion si no hay suficiente stock
+		 //Reduce el stock cuando se compra la medicina.
 		this.stock -= amount;
 		Medicine aux = new Medicine(name, unitPrice * amount, stock);
 		return aux;
 	}
+	
   
 }
