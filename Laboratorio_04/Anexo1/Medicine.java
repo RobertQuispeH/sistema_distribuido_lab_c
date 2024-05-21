@@ -1,4 +1,4 @@
-package Lab04Anx;
+package Anexo1;
 
 import java.rmi.server.UnicastRemoteObject;
 /**
