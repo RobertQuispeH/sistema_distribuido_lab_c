@@ -27,4 +27,22 @@
         </autor>
         <editor>Editorial LibrosPE</editor>
     </portada>
+    <cuerpo>
+        <capitulo>
+            <titulo>Capítulo 1: Conceptos Básicos</titulo>
+            <seccion>
+                <parrafo>En este capítulo, aprenderemos los conceptos básicos de la programación.</parrafo>
+                <parrafo>Comenzaremos con una introducción a los lenguajes de programación.</parrafo>
+            </seccion>
+            <seccion>
+                <parrafo>Los lenguajes de programación se pueden clasificar en diferentes categorías.</parrafo>
+            </seccion>
+        </capitulo>
+        <capitulo>
+            <titulo>Capítulo 2: Estructuras de Control</titulo>
+            <seccion>
+                <parrafo>Las estructuras de control son fundamentales para la lógica de los programas.</parrafo>
+            </seccion>
+        </capitulo>
+    </cuerpo>
 </libro>
