@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE libro [
+	<!ELEMENT libro (portada, cuerpo, contraportada)>
+	<!ELEMENT portada (titulo, edicion, autor, editor)>
+	<!ELEMENT titulo (#PCDATA)>
+	<!ELEMENT edicion (#PCDATA)>
+	<!ELEMENT autor (nombre, apellidos, email?)>
+	<!ELEMENT nombre (#PCDATA)>
+	<!ELEMENT apellidos (#PCDATA)>
+	<!ELEMENT email (#PCDATA)>
+	<!ELEMENT editor (#PCDATA)>
+	<!ELEMENT cuerpo (capitulo+)>
+	<!ELEMENT capitulo (titulo, seccion+)>
+	<!ELEMENT seccion (parrafo+)>
+	<!ELEMENT parrafo (#PCDATA)>
+	<!ELEMENT contraportada (#PCDATA)>
+]>
