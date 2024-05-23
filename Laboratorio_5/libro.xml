@@ -15,3 +15,16 @@
 	<!ELEMENT parrafo (#PCDATA)>
 	<!ELEMENT contraportada (#PCDATA)>
 ]>
+
+<libro>
+    <portada>
+        <titulo>Introducción a la Programación</titulo>
+        <edicion>Primera</edicion>
+        <autor>
+            <nombre>KEVIN</nombre>
+            <apellidos>MAMANI</apellidos>
+            <email>kevinalonso852@gmail.com</email>
+        </autor>
+        <editor>Editorial LibrosPE</editor>
+    </portada>
+</libro>
