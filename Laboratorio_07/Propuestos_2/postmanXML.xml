@@ -26,3 +26,18 @@ Body;
     </CapitalCity>
   </soap:Body>
 </soap:Envelope>
+
+<!-- 
+URL: http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso 
+metodo: POST
+descripción: Moneda del pais que esta dentro de la etiqueta sCountryISOCode 
+Body;
+-->
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <CountryCurrency xmlns="http://www.oorsprong.org/websamples.countryinfo">
+      <sCountryISOCode>PE</sCountryISOCode>
+    </CountryCurrency>
+  </soap:Body>
+</soap:Envelope>
