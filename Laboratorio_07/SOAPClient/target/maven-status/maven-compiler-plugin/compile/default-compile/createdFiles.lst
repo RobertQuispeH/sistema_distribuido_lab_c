@@ -1,0 +1,9 @@
+es\rosamarfil\soap\GetUsers.class
+es\rosamarfil\soap\SOAPImplService.class
+es\rosamarfil\soap\AddUser.class
+es\rosamarfil\soap\AddUserResponse.class
+es\rosamarfil\soap\ObjectFactory.class
+es\rosamarfil\soap\GetUsersResponse.class
+es\rosamarfil\soap\User.class
+es\rosamarfil\soap\package-info.class
+es\rosamarfil\soap\SOAPI.class
