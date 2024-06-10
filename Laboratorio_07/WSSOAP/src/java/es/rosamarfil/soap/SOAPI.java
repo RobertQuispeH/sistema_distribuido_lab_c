@@ -15,6 +15,10 @@ import es.rosamarfil.model.User;
 @WebService
 public interface SOAPI {
      
-    
+    @WebMethod
+    public List<User> getUsers();
+     
+    @WebMethod
+    public void addUser(User user);
  
 }
