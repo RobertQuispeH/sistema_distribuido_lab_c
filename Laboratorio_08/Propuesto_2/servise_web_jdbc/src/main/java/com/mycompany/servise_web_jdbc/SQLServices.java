@@ -19,13 +19,28 @@ public class SQLServices {
     /**
      * This is a sample web service operation
      */
-    @WebMethod(operationName = "hello")
-    public String hello(@WebParam(name = "name") String txt) {
-        return "Hello " + txt + " !";
-    }
-    
     @WebMethod(operationName = "departamentoAll")
     public List<Departamento> departamentoAll() {
         return q.departamentoAll();
+    }
+    
+    @WebMethod(operationName = "addDepartamento")
+    public boolean addDepartamento(Departamento departamento) {
+        return q.departamentoAdd(departamento);
+    }
+
+    @WebMethod(operationName = "updateDepartamento")
+    public boolean updateDepartamento(Departamento departamento) {
+        return q.departamentoUpdate(departamento);
+    }
+
+    @WebMethod(operationName = "deleteDepartamento")
+    public boolean deleteDepartamento(int idDpto) {
+        return q.departamentoDelete(idDpto);
+    }
+
+    @WebMethod(operationName = "departamentoSearchByName")
+    public int departamentoSearchByName(String name) {
+        return q.departamentoSearchByName(name);
     }
 }

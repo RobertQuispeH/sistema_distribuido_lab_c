@@ -55,5 +55,56 @@ public class QueriesDB {
         }
         return  all;
     }
+    public boolean departamentoAdd(Departamento departamento) {
+        boolean added = false;
+        Connection accesDB = conecctionDB.conectar();
+        try {
+            PreparedStatement ps = accesDB.prepareStatement("INSERT INTO departamento (IDDpto,Nombre, Telefono, Fax) VALUES (?,?, ?,?)");
+            ps.setInt(1, departamento.getIdDpto());
+            ps.setString(2, departamento.getNombre());
+            ps.setString(3, departamento.getTelefono());
+            ps.setString(4, departamento.getFax());
+            int rows = ps.executeUpdate();
+            if (rows > 0) {
+                added = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return added;
+    }
+    public boolean departamentoUpdate(Departamento departamento) {
+        boolean updated = false;
+        Connection accesDB = conecctionDB.conectar();
+        try {
+            PreparedStatement ps = accesDB.prepareStatement("UPDATE departamento SET Nombre = ?, Telefono = ?, Fax = ? WHERE IDDpto = ?");
+            ps.setString(1, departamento.getNombre());
+            ps.setString(2, departamento.getTelefono());
+            ps.setString(3, departamento.getFax());
+            ps.setInt(4, departamento.getIdDpto());
+            int rows = ps.executeUpdate();
+            if (rows > 0) {
+                updated = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return updated;
+    }
+    public boolean departamentoDelete(int idDpto) {
+        boolean deleted = false;
+        Connection accesDB = conecctionDB.conectar();
+        try {
+            PreparedStatement ps = accesDB.prepareStatement("DELETE FROM departamento WHERE IDDpto = ?");
+            ps.setInt(1, idDpto);
+            int rows = ps.executeUpdate();
+            if (rows > 0) {
+                deleted = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return deleted;
+    }
     
 }
