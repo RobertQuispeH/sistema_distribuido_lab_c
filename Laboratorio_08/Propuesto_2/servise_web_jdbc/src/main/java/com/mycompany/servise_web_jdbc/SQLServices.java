@@ -24,23 +24,58 @@ public class SQLServices {
         return q.departamentoAll();
     }
     
-    @WebMethod(operationName = "addDepartamento")
-    public boolean addDepartamento(Departamento departamento) {
+    @WebMethod(operationName = "departamentoAdd")
+    public boolean departamentoAdd(Departamento departamento) {
         return q.departamentoAdd(departamento);
     }
 
-    @WebMethod(operationName = "updateDepartamento")
-    public boolean updateDepartamento(Departamento departamento) {
+    @WebMethod(operationName = "departamentoUpdate")
+    public boolean departamentoUpdate(Departamento departamento) {
         return q.departamentoUpdate(departamento);
     }
 
-    @WebMethod(operationName = "deleteDepartamento")
-    public boolean deleteDepartamento(int idDpto) {
+    @WebMethod(operationName = "departamentoDelete")
+    public boolean departamentoDelete(int idDpto) {
         return q.departamentoDelete(idDpto);
     }
+    //proyecto
+    @WebMethod(operationName = "proyectoAll")
+    public List<Proyecto> proyectoAll() {
+        return q.proyectoAll();
+    }
+    
+    @WebMethod(operationName = "proyectoAdd")
+    public boolean proyectoAdd(Proyecto proyecto) {
+        return q.proyectoAdd(proyecto);
+    }
 
-    @WebMethod(operationName = "departamentoSearchByName")
-    public int departamentoSearchByName(String name) {
-        return q.departamentoSearchByName(name);
+    @WebMethod(operationName = "proyectoUpdate")
+    public boolean proyectoUpdate(Proyecto proyecto) {
+        return q.proyectoUpdate(proyecto);
+    }
+
+    @WebMethod(operationName = "proyectoDelete")
+    public boolean proyectoDelete(int idProy) {
+        return q.proyectoDelete(idProy);
+    }
+  //Ingeniero
+   @WebMethod(operationName = "ingenieroAll")
+    public List<Ingeniero> ingenieroAll() {
+        return q.ingenieroAll();
+    }
+
+    @WebMethod(operationName = "ingenieroAdd")
+    public boolean ingenieroAdd(Ingeniero ingeniero) {
+        return q.ingenieroAdd(ingeniero);
+    }
+
+    @WebMethod(operationName = "ingenieroUpdate")
+    public boolean ingenieroUpdate(Ingeniero ingeniero) {
+        return q.ingenieroUpdate(ingeniero);
+    }
+
+    @WebMethod(operationName = "ingenieroDelete")
+    public boolean ingenieroDelete(int IDIng) {
+        return q.ingenieroDelete(IDIng);
     }
 }
