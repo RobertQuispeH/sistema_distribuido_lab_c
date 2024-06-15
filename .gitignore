@@ -1,1 +1,3 @@
 /Laboratorio_08/Propuesto_2/servise_web_jdbc/target/
+env/
+.env
