@@ -32,6 +32,17 @@ public class TransaccionesJDBC {
             stmtInsertarDepartamento.executeUpdate();
             System.out.println("Datos insertados en la tabla 'departamento'.");
 
+             // Ejecutar la segunda operación: Insertar en la tabla proyecto
+            stmtInsertarProyecto.setInt(1, 3);
+            stmtInsertarProyecto.setString(2, "Proyecto Gamma");
+            stmtInsertarProyecto.setDate(3, java.sql.Date.valueOf("2024-02-01"));
+            stmtInsertarProyecto.setDate(4, java.sql.Date.valueOf("2024-11-30"));
+            stmtInsertarProyecto.setInt(5, 3);
+            stmtInsertarProyecto.executeUpdate();
+            System.out.println("Datos insertados en la tabla 'proyecto'.");
+
+           
+
            
 
            
