@@ -24,6 +24,15 @@ public class TransaccionesJDBC {
             PreparedStatement stmtInsertarDepartamento = conexion.prepareStatement(sqlInsertarDepartamento);
             PreparedStatement stmtInsertarIngeniero = conexion.prepareStatement(sqlInsertarIngeniero);
             PreparedStatement stmtInsertarProyecto = conexion.prepareStatement(sqlInsertarProyecto);
+             // Ejecutar la primera operación: Insertar en la tabla departamento
+            stmtInsertarDepartamento.setInt(1, 3);
+            stmtInsertarDepartamento.setString(2, "Calidad");
+            stmtInsertarDepartamento.setString(3, "222333444");
+            stmtInsertarDepartamento.setString(4, "555666777");
+            stmtInsertarDepartamento.executeUpdate();
+            System.out.println("Datos insertados en la tabla 'departamento'.");
+
+           
 
            
 
