@@ -14,5 +14,16 @@ public class DatabaseConnection {
         return connection;
     }
 
+     public static void closeConnection(Connection connection) {
+        if (connection != null) {
+            try {
+                connection.close();
+                System.out.println("Conexión a la base de datos cerrada.");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
    
 }
