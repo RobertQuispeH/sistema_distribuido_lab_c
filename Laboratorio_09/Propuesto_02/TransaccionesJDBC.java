@@ -49,6 +49,11 @@ public class TransaccionesJDBC {
             stmtInsertarIngeniero.setInt(5, 3);
             stmtInsertarIngeniero.executeUpdate();
             System.out.println("Datos insertados en la tabla 'ingeniero'.");
+
+             // Si todas las operaciones son exitosas, hacer commit
+            conexion.commit();
+            System.out.println("Transacción completada con éxito. Datos confirmados.");
+
            
 
         } catch (SQLIntegrityConstraintViolationException e) {
