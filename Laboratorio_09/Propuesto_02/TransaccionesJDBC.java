@@ -41,10 +41,14 @@ public class TransaccionesJDBC {
             stmtInsertarProyecto.executeUpdate();
             System.out.println("Datos insertados en la tabla 'proyecto'.");
 
-           
-
-           
-
+             // Ejecutar la tercera operación: Insertar en la tabla ingeniero
+            stmtInsertarIngeniero.setInt(1, 3);
+            stmtInsertarIngeniero.setString(2, "Carlos Martinez");
+            stmtInsertarIngeniero.setString(3, "Ingeniería Mecánica");
+            stmtInsertarIngeniero.setString(4, "Gerente");
+            stmtInsertarIngeniero.setInt(5, 3);
+            stmtInsertarIngeniero.executeUpdate();
+            System.out.println("Datos insertados en la tabla 'ingeniero'.");
            
 
         } catch (SQLIntegrityConstraintViolationException e) {
