@@ -1,0 +1,7 @@
+executable = /bin/echo
+arguments = "Hello, HTCondor!"
+output = job.out
+error = job.error
+log = job.log
+queue
+

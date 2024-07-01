@@ -1,0 +1,11 @@
+000 (001.000.000) 2024-06-29 18:49:22 Job submitted from host: <192.168.0.2:41937?addrs=192.168.0.2-41937&alias=condor-master&noUDP&sock=schedd_8_10d8_5>
+...
+007 (001.000.000) 2024-06-29 18:49:22 Shadow exception!
+	Error from slot1@condor-master: Failed to open '/etc/condor-ce/job.out' as standard output: Permission denied (errno 13)
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+...
+012 (001.000.000) 2024-06-29 18:49:22 Job was held.
+	Error from slot1@condor-master: Failed to open '/etc/condor-ce/job.out' as standard output: Permission denied (errno 13)
+	Code 7 Subcode 13
+...

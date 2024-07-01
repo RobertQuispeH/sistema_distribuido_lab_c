@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  condor_master:
+    # image: htcondor/mini:latest
+    image: andypohl/htcondor:latest 
+    hostname: condor-master
+    ports:
+      - "9618:9618"
+    environment:
+      - HTCONDOR_CE_HOME=/etc/condor-ce
+    volumes:
+      - ./condor_config_master:/etc/condor-ce
+      - ./pool_password:/etc/condor-ce/pool_password
+
+  condor_worker1:
+    # image: htcondor/mini:latest
+    image: andypohl/htcondor:latest 
+    depends_on:
+      - condor_master
+    environment:
+      - HTCONDOR_CE_HOME=/etc/condor-ce
+    volumes:
+      - ./condor_config_worker:/etc/condor-ce
+      - ./pool_password:/etc/condor-ce/pool_password
+
+  condor_worker2:
+    # image: htcondor/mini:latest
+    image: andypohl/htcondor:latest 
+    depends_on:
+      - condor_master
+    environment:
+      - HTCONDOR_CE_HOME=/etc/condor-ce
+    volumes:
+      - ./condor_config_worker:/etc/condor-ce
+      - ./pool_password:/etc/condor-ce/pool_password
+

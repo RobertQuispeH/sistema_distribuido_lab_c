@@ -1,0 +1,27 @@
+# Archivo de configuración básico de HTCondor
+
+# Nombre del pool de HTCondor
+CONDOR_HOST = condor-master
+
+# Log de HTCondor
+LOG = /var/log/condor/condor.log
+
+# Dirección de escucha del demonio
+DAEMON_LIST = MASTER, SCHEDD, STARTD
+
+# Configuración de seguridad
+SEC_PASSWORD_FILE = /etc/condor-ce/pool_password/pool_password
+SEC_DEFAULT_AUTHENTICATION_METHODS = FS,PASSWORD
+
+# Configuración para trabajadores
+START = True
+SUSPEND = False
+CONTINUE = True
+PREEMPT = False
+KILL = False
+
+# Configuración de red y puertos
+NETWORK_INTERFACE = eth0
+
+ALLOW_WRITE = *
+ALLOW_READ = *
